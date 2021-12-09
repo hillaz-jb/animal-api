@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\SpeciesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -23,6 +26,15 @@ class Species
     #[ORM\Column(type: 'date', nullable: true)]
     #[Assert\Type(\DateTimeInterface::class)]
     private $discoveredSince;
+
+    #[ORM\OneToMany(mappedBy: 'species', targetEntity: Breed::class)]
+    #[ApiSubresource]
+    private $breeds;
+
+    public function __construct()
+    {
+        $this->breeds = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -49,6 +61,36 @@ class Species
     public function setDiscoveredSince(?\DateTimeInterface $discoveredSince): self
     {
         $this->discoveredSince = $discoveredSince;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Breed[]
+     */
+    public function getBreeds(): Collection
+    {
+        return $this->breeds;
+    }
+
+    public function addBreed(Breed $breed): self
+    {
+        if (!$this->breeds->contains($breed)) {
+            $this->breeds[] = $breed;
+            $breed->setSpecies($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBreed(Breed $breed): self
+    {
+        if ($this->breeds->removeElement($breed)) {
+            // set the owning side to null (unless already changed)
+            if ($breed->getSpecies() === $this) {
+                $breed->setSpecies(null);
+            }
+        }
 
         return $this;
     }

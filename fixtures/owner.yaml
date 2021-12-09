@@ -1,0 +1,5 @@
+App\Entity\Owner:
+  owner_{1..190}:
+    firstName: "<firstName()>"
+    lastName: "<lastName()>"
+    birthAt: "<dateTimeBetween('-80 years', '-18 years', null)>"

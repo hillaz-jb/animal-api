@@ -1,0 +1,8 @@
+App\Entity\Species:
+#  species_{Chat, Chien, Poule, Poisson}:
+#    name: "<current()>"
+#    discoveredSince: "<dateTimeBetween('-1000 years','-200 years',null)>"
+
+  species_{1..200}:
+    name (unique): "<animal()>"
+    discoveredSince: "<dateTimeBetween('-1000 years','-200 years',null)>"

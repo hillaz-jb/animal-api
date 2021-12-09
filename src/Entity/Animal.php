@@ -5,6 +5,8 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AnimalRepository;
 use App\Repository\OwnerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -21,14 +23,20 @@ class Animal
     #[Assert\NotBlank, Assert\Length(min: 2, max: 255)]
     private $name;
 
-    #[ORM\ManyToOne(targetEntity: Species::class)]
-    #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank]
-    private $species;
-
     #[ORM\ManyToOne(targetEntity: Owner::class, inversedBy: 'animals')]
 
     private $owner;
+
+    #[ORM\Column(type: 'string', length: 20, nullable: true)]
+    private $gender;
+
+    #[ORM\ManyToMany(targetEntity: Breed::class)]
+    private $breeds;
+
+    public function __construct()
+    {
+        $this->breeds = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -47,18 +55,6 @@ class Animal
         return $this;
     }
 
-    public function getSpecies(): ?Species
-    {
-        return $this->species;
-    }
-
-    public function setSpecies(?Species $species): self
-    {
-        $this->species = $species;
-
-        return $this;
-    }
-
     public function getOwner(): ?Owner
     {
         return $this->owner;
@@ -67,6 +63,42 @@ class Animal
     public function setOwner(?Owner $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Breed[]
+     */
+    public function getBreeds(): Collection
+    {
+        return $this->breeds;
+    }
+
+    public function addBreed(Breed $breed): self
+    {
+        if (!$this->breeds->contains($breed)) {
+            $this->breeds[] = $breed;
+        }
+
+        return $this;
+    }
+
+    public function removeBreed(Breed $breed): self
+    {
+        $this->breeds->removeElement($breed);
 
         return $this;
     }

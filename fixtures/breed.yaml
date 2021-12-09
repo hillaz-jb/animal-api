@@ -1,0 +1,6 @@
+App\Entity\Breed:
+
+
+  breed_{1..40}:
+    name : "<word()>"
+    species: "@species_*"
