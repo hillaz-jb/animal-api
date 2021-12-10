@@ -13,7 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: OwnerRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    itemOperations: ['get', 'put', 'delete']
+)]
 class Animal
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]

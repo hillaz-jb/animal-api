@@ -9,12 +9,12 @@ App\Entity\Animal:
   animalM_{1..100}:
     name: "<firstNameMale()>"
     owner: "90%? @owner_*"
-    breeds: "[@breed_*]"
+    breeds: "<numberBetween(1,2)>x @breed_*"
     gender: "Male"
 
   animalF_{1..100}:
     name: "<firstNameFemale()>"
     owner: "90%? @owner_*"
-    breeds: "[@breed_*]"
+    breeds: "<numberBetween(1,2)>x @breed_*"
     gender: "Female"
 
