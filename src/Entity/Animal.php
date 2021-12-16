@@ -17,7 +17,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnimalRepository::class)]
 #[ApiResource(
-    itemOperations: ['get', 'put', 'delete']
+    collectionOperations: [
+        'get',
+        'post' => [
+            "security" => "is_granted('ROLE_ADMIN_ANIMAL')"
+        ],
+    ],
+    itemOperations: [
+        'get',
+        'put' => ["security" => "is_granted('ROLE_ADMIN_ANIMAL')"],
+        'delete' => ["security" => "is_granted('ROLE_ADMIN_ANIMAL')"]
+    ]
 )]
 #[ApiFilter(SearchFilter::class, properties: ['id'])]
 #[ApiFilter(ExistsFilter::class, properties: ['owner'])]

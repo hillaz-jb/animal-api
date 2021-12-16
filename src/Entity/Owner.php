@@ -20,6 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             'denormalization_context' => [
                 'groups' => ['lite_owner'],
             ],
+            "security" => "is_granted('ROLE_ADMIN_OWNER')"
         ],
     ],
     itemOperations: [
@@ -28,8 +29,8 @@ use Symfony\Component\Validator\Constraints as Assert;
                 'groups' => ['full_owner'],
             ],
         ],
-        'put',
-        'delete',
+        'put' => ["security" => "is_granted('ROLE_ADMIN_OWNER')"],
+        'delete' => ["security" => "is_granted('ROLE_ADMIN_OWNER')"],
         'patch',
     ],
     denormalizationContext: [
