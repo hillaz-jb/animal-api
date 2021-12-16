@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { InlineResponse200HydraSearchHydraMapping } from './inline-response200-hydra-search-hydra-mapping';
 
 
-export interface OwnerFullOwner { 
-    readonly id?: number;
-    firstName: string;
-    lastName: string;
-    birthAt?: string | null;
-    animals?: Array<string>;
+export interface InlineResponse200HydraSearch { 
+    type?: string;
+    'hydra:template'?: string;
+    'hydra:variableRepresentation'?: string;
+    'hydra:mapping'?: Array<InlineResponse200HydraSearchHydraMapping>;
 }
 

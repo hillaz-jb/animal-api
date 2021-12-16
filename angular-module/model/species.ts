@@ -14,7 +14,7 @@
 export interface Species { 
     readonly id?: number;
     name: string;
-    discoveredSince?: string;
+    discoveredSince?: string | null;
     breeds?: Array<string>;
 }
 

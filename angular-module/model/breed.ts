@@ -13,7 +13,7 @@
 
 export interface Breed { 
     readonly id?: number;
-    name?: string;
+    name?: string | null;
     species?: string;
 }
 

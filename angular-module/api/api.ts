@@ -6,4 +6,6 @@ export * from './owner.service';
 import { OwnerService } from './owner.service';
 export * from './species.service';
 import { SpeciesService } from './species.service';
-export const APIS = [AnimalService, BreedService, OwnerService, SpeciesService];
+export * from './token.service';
+import { TokenService } from './token.service';
+export const APIS = [AnimalService, BreedService, OwnerService, SpeciesService, TokenService];

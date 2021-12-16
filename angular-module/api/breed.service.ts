@@ -19,6 +19,8 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { Breed } from '../model/models';
+import { BreedJsonld } from '../model/models';
+import { InlineResponse2001 } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -86,18 +88,19 @@ export class BreedService {
     }
 
     /**
-     * Retrieves the collection of Breed resources.
-     * @param id 
+     * Retrieves a Species resource.
+     * Retrieves a Species resource.
+     * @param id Species identifier
      * @param toto The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Array<Breed>>;
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Array<Breed>>>;
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Array<Breed>>>;
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<InlineResponse2001>;
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<InlineResponse2001>>;
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<InlineResponse2001>>;
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling apiSpeciesBreedsGetSubresource.');
+            throw new Error('Required parameter id was null or undefined when calling apiSpeciesBreedsGetSubresourceSpeciesSubresource.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -136,7 +139,7 @@ export class BreedService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<Breed>>(`${this.configuration.basePath}/api/species/${encodeURIComponent(String(id))}/breeds`,
+        return this.httpClient.get<InlineResponse2001>(`${this.configuration.basePath}/api/species/${encodeURIComponent(String(id))}/breeds`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
@@ -150,7 +153,8 @@ export class BreedService {
 
     /**
      * Removes the Breed resource.
-     * @param id 
+     * Removes the Breed resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -202,13 +206,14 @@ export class BreedService {
 
     /**
      * Retrieves the collection of Breed resources.
+     * Retrieves the collection of Breed resources.
      * @param toto The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBreedCollection(toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Array<Breed>>;
-    public getBreedCollection(toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Array<Breed>>>;
-    public getBreedCollection(toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Array<Breed>>>;
+    public getBreedCollection(toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<InlineResponse2001>;
+    public getBreedCollection(toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<InlineResponse2001>>;
+    public getBreedCollection(toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<InlineResponse2001>>;
     public getBreedCollection(toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -247,7 +252,7 @@ export class BreedService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<Breed>>(`${this.configuration.basePath}/api/breeds`,
+        return this.httpClient.get<InlineResponse2001>(`${this.configuration.basePath}/api/breeds`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
@@ -261,13 +266,14 @@ export class BreedService {
 
     /**
      * Retrieves a Breed resource.
-     * @param id 
+     * Retrieves a Breed resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBreedItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Breed>;
-    public getBreedItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Breed>>;
-    public getBreedItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Breed>>;
+    public getBreedItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<BreedJsonld>;
+    public getBreedItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<BreedJsonld>>;
+    public getBreedItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<BreedJsonld>>;
     public getBreedItem(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getBreedItem.');
@@ -303,7 +309,7 @@ export class BreedService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Breed>(`${this.configuration.basePath}/api/breeds/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<BreedJsonld>(`${this.configuration.basePath}/api/breeds/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -316,17 +322,21 @@ export class BreedService {
 
     /**
      * Updates the Breed resource.
-     * @param id 
+     * Updates the Breed resource.
+     * @param id Resource identifier
      * @param breed The updated Breed resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public patchBreedItem(id: string, breed?: Breed, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Breed>;
-    public patchBreedItem(id: string, breed?: Breed, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Breed>>;
-    public patchBreedItem(id: string, breed?: Breed, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Breed>>;
-    public patchBreedItem(id: string, breed?: Breed, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public patchBreedItem(id: string, breed: Breed, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<BreedJsonld>;
+    public patchBreedItem(id: string, breed: Breed, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<BreedJsonld>>;
+    public patchBreedItem(id: string, breed: Breed, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<BreedJsonld>>;
+    public patchBreedItem(id: string, breed: Breed, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling patchBreedItem.');
+        }
+        if (breed === null || breed === undefined) {
+            throw new Error('Required parameter breed was null or undefined when calling patchBreedItem.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -368,7 +378,7 @@ export class BreedService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.patch<Breed>(`${this.configuration.basePath}/api/breeds/${encodeURIComponent(String(id))}`,
+        return this.httpClient.patch<BreedJsonld>(`${this.configuration.basePath}/api/breeds/${encodeURIComponent(String(id))}`,
             breed,
             {
                 responseType: <any>responseType_,
@@ -382,14 +392,18 @@ export class BreedService {
 
     /**
      * Creates a Breed resource.
-     * @param breed The new Breed resource
+     * Creates a Breed resource.
+     * @param breedJsonld The new Breed resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postBreedCollection(breed?: Breed, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Breed>;
-    public postBreedCollection(breed?: Breed, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Breed>>;
-    public postBreedCollection(breed?: Breed, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Breed>>;
-    public postBreedCollection(breed?: Breed, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public postBreedCollection(breedJsonld: BreedJsonld, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<BreedJsonld>;
+    public postBreedCollection(breedJsonld: BreedJsonld, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<BreedJsonld>>;
+    public postBreedCollection(breedJsonld: BreedJsonld, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<BreedJsonld>>;
+    public postBreedCollection(breedJsonld: BreedJsonld, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+        if (breedJsonld === null || breedJsonld === undefined) {
+            throw new Error('Required parameter breedJsonld was null or undefined when calling postBreedCollection.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -432,8 +446,8 @@ export class BreedService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<Breed>(`${this.configuration.basePath}/api/breeds`,
-            breed,
+        return this.httpClient.post<BreedJsonld>(`${this.configuration.basePath}/api/breeds`,
+            breedJsonld,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -446,17 +460,21 @@ export class BreedService {
 
     /**
      * Replaces the Breed resource.
-     * @param id 
-     * @param breed The updated Breed resource
+     * Replaces the Breed resource.
+     * @param id Resource identifier
+     * @param breedJsonld The updated Breed resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putBreedItem(id: string, breed?: Breed, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Breed>;
-    public putBreedItem(id: string, breed?: Breed, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Breed>>;
-    public putBreedItem(id: string, breed?: Breed, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Breed>>;
-    public putBreedItem(id: string, breed?: Breed, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public putBreedItem(id: string, breedJsonld: BreedJsonld, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<BreedJsonld>;
+    public putBreedItem(id: string, breedJsonld: BreedJsonld, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<BreedJsonld>>;
+    public putBreedItem(id: string, breedJsonld: BreedJsonld, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<BreedJsonld>>;
+    public putBreedItem(id: string, breedJsonld: BreedJsonld, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling putBreedItem.');
+        }
+        if (breedJsonld === null || breedJsonld === undefined) {
+            throw new Error('Required parameter breedJsonld was null or undefined when calling putBreedItem.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -500,8 +518,8 @@ export class BreedService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<Breed>(`${this.configuration.basePath}/api/breeds/${encodeURIComponent(String(id))}`,
-            breed,
+        return this.httpClient.put<BreedJsonld>(`${this.configuration.basePath}/api/breeds/${encodeURIComponent(String(id))}`,
+            breedJsonld,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

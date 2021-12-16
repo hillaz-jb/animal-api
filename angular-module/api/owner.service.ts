@@ -18,7 +18,9 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { OwnerFullOwner } from '../model/models';
+import { InlineResponse2002 } from '../model/models';
+import { OwnerJsonldFullOwner } from '../model/models';
+import { OwnerJsonldLiteOwner } from '../model/models';
 import { OwnerLiteOwner } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -88,7 +90,8 @@ export class OwnerService {
 
     /**
      * Removes the Owner resource.
-     * @param id 
+     * Removes the Owner resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -140,24 +143,25 @@ export class OwnerService {
 
     /**
      * Retrieves the collection of Owner resources.
-     * @param lastName 
+     * Retrieves the collection of Owner resources.
      * @param toto The collection page number
+     * @param lastName 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getOwnerCollection(lastName?: string, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Array<OwnerLiteOwner>>;
-    public getOwnerCollection(lastName?: string, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Array<OwnerLiteOwner>>>;
-    public getOwnerCollection(lastName?: string, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Array<OwnerLiteOwner>>>;
-    public getOwnerCollection(lastName?: string, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public getOwnerCollection(toto?: number, lastName?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<InlineResponse2002>;
+    public getOwnerCollection(toto?: number, lastName?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<InlineResponse2002>>;
+    public getOwnerCollection(toto?: number, lastName?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<InlineResponse2002>>;
+    public getOwnerCollection(toto?: number, lastName?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
-        if (lastName !== undefined && lastName !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>lastName, 'lastName');
-        }
         if (toto !== undefined && toto !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>toto, 'toto');
+        }
+        if (lastName !== undefined && lastName !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>lastName, 'lastName');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -190,7 +194,7 @@ export class OwnerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<OwnerLiteOwner>>(`${this.configuration.basePath}/api/owners`,
+        return this.httpClient.get<InlineResponse2002>(`${this.configuration.basePath}/api/owners`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
@@ -204,13 +208,14 @@ export class OwnerService {
 
     /**
      * Retrieves a Owner resource.
-     * @param id 
+     * Retrieves a Owner resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getOwnerItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerFullOwner>;
-    public getOwnerItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerFullOwner>>;
-    public getOwnerItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerFullOwner>>;
+    public getOwnerItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerJsonldFullOwner>;
+    public getOwnerItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerJsonldFullOwner>>;
+    public getOwnerItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerJsonldFullOwner>>;
     public getOwnerItem(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getOwnerItem.');
@@ -246,7 +251,7 @@ export class OwnerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<OwnerFullOwner>(`${this.configuration.basePath}/api/owners/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<OwnerJsonldFullOwner>(`${this.configuration.basePath}/api/owners/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -259,17 +264,21 @@ export class OwnerService {
 
     /**
      * Updates the Owner resource.
-     * @param id 
-     * @param owner The updated Owner resource
+     * Updates the Owner resource.
+     * @param id Resource identifier
+     * @param ownerLiteOwner The updated Owner resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public patchOwnerItem(id: string, owner?: OwnerLiteOwner, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerLiteOwner>;
-    public patchOwnerItem(id: string, owner?: OwnerLiteOwner, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerLiteOwner>>;
-    public patchOwnerItem(id: string, owner?: OwnerLiteOwner, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerLiteOwner>>;
-    public patchOwnerItem(id: string, owner?: OwnerLiteOwner, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public patchOwnerItem(id: string, ownerLiteOwner: OwnerLiteOwner, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerJsonldLiteOwner>;
+    public patchOwnerItem(id: string, ownerLiteOwner: OwnerLiteOwner, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerJsonldLiteOwner>>;
+    public patchOwnerItem(id: string, ownerLiteOwner: OwnerLiteOwner, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerJsonldLiteOwner>>;
+    public patchOwnerItem(id: string, ownerLiteOwner: OwnerLiteOwner, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling patchOwnerItem.');
+        }
+        if (ownerLiteOwner === null || ownerLiteOwner === undefined) {
+            throw new Error('Required parameter ownerLiteOwner was null or undefined when calling patchOwnerItem.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -311,8 +320,8 @@ export class OwnerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.patch<OwnerLiteOwner>(`${this.configuration.basePath}/api/owners/${encodeURIComponent(String(id))}`,
-            owner,
+        return this.httpClient.patch<OwnerJsonldLiteOwner>(`${this.configuration.basePath}/api/owners/${encodeURIComponent(String(id))}`,
+            ownerLiteOwner,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -325,14 +334,18 @@ export class OwnerService {
 
     /**
      * Creates a Owner resource.
-     * @param owner The new Owner resource
+     * Creates a Owner resource.
+     * @param ownerJsonldLiteOwner The new Owner resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postOwnerCollection(owner?: OwnerLiteOwner, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerLiteOwner>;
-    public postOwnerCollection(owner?: OwnerLiteOwner, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerLiteOwner>>;
-    public postOwnerCollection(owner?: OwnerLiteOwner, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerLiteOwner>>;
-    public postOwnerCollection(owner?: OwnerLiteOwner, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public postOwnerCollection(ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerJsonldLiteOwner>;
+    public postOwnerCollection(ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerJsonldLiteOwner>>;
+    public postOwnerCollection(ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerJsonldLiteOwner>>;
+    public postOwnerCollection(ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+        if (ownerJsonldLiteOwner === null || ownerJsonldLiteOwner === undefined) {
+            throw new Error('Required parameter ownerJsonldLiteOwner was null or undefined when calling postOwnerCollection.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -375,8 +388,8 @@ export class OwnerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<OwnerLiteOwner>(`${this.configuration.basePath}/api/owners`,
-            owner,
+        return this.httpClient.post<OwnerJsonldLiteOwner>(`${this.configuration.basePath}/api/owners`,
+            ownerJsonldLiteOwner,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -389,17 +402,21 @@ export class OwnerService {
 
     /**
      * Replaces the Owner resource.
-     * @param id 
-     * @param owner The updated Owner resource
+     * Replaces the Owner resource.
+     * @param id Resource identifier
+     * @param ownerJsonldLiteOwner The updated Owner resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putOwnerItem(id: string, owner?: OwnerLiteOwner, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerLiteOwner>;
-    public putOwnerItem(id: string, owner?: OwnerLiteOwner, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerLiteOwner>>;
-    public putOwnerItem(id: string, owner?: OwnerLiteOwner, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerLiteOwner>>;
-    public putOwnerItem(id: string, owner?: OwnerLiteOwner, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public putOwnerItem(id: string, ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<OwnerJsonldLiteOwner>;
+    public putOwnerItem(id: string, ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<OwnerJsonldLiteOwner>>;
+    public putOwnerItem(id: string, ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<OwnerJsonldLiteOwner>>;
+    public putOwnerItem(id: string, ownerJsonldLiteOwner: OwnerJsonldLiteOwner, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling putOwnerItem.');
+        }
+        if (ownerJsonldLiteOwner === null || ownerJsonldLiteOwner === undefined) {
+            throw new Error('Required parameter ownerJsonldLiteOwner was null or undefined when calling putOwnerItem.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -443,8 +460,8 @@ export class OwnerService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<OwnerLiteOwner>(`${this.configuration.basePath}/api/owners/${encodeURIComponent(String(id))}`,
-            owner,
+        return this.httpClient.put<OwnerJsonldLiteOwner>(`${this.configuration.basePath}/api/owners/${encodeURIComponent(String(id))}`,
+            ownerJsonldLiteOwner,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

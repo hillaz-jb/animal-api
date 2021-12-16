@@ -18,7 +18,8 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { Animal } from '../model/models';
+import { AnimalJsonld } from '../model/models';
+import { InlineResponse200 } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -87,7 +88,8 @@ export class AnimalService {
 
     /**
      * Removes the Animal resource.
-     * @param id 
+     * Removes the Animal resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -139,19 +141,24 @@ export class AnimalService {
 
     /**
      * Retrieves the collection of Animal resources.
+     * Retrieves the collection of Animal resources.
+     * @param toto The collection page number
      * @param id 
      * @param id2 
      * @param existsOwner 
-     * @param toto The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAnimalCollection(id?: number, id2?: Array<number>, existsOwner?: boolean, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Array<Animal>>;
-    public getAnimalCollection(id?: number, id2?: Array<number>, existsOwner?: boolean, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Array<Animal>>>;
-    public getAnimalCollection(id?: number, id2?: Array<number>, existsOwner?: boolean, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Array<Animal>>>;
-    public getAnimalCollection(id?: number, id2?: Array<number>, existsOwner?: boolean, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public getAnimalCollection(toto?: number, id?: number, id2?: Array<number>, existsOwner?: boolean, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<InlineResponse200>;
+    public getAnimalCollection(toto?: number, id?: number, id2?: Array<number>, existsOwner?: boolean, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<InlineResponse200>>;
+    public getAnimalCollection(toto?: number, id?: number, id2?: Array<number>, existsOwner?: boolean, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<InlineResponse200>>;
+    public getAnimalCollection(toto?: number, id?: number, id2?: Array<number>, existsOwner?: boolean, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (toto !== undefined && toto !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>toto, 'toto');
+        }
         if (id !== undefined && id !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>id, 'id');
@@ -165,10 +172,6 @@ export class AnimalService {
         if (existsOwner !== undefined && existsOwner !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>existsOwner, 'exists[owner]');
-        }
-        if (toto !== undefined && toto !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>toto, 'toto');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -201,7 +204,7 @@ export class AnimalService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<Animal>>(`${this.configuration.basePath}/api/animals`,
+        return this.httpClient.get<InlineResponse200>(`${this.configuration.basePath}/api/animals`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
@@ -215,13 +218,14 @@ export class AnimalService {
 
     /**
      * Retrieves a Animal resource.
-     * @param id 
+     * Retrieves a Animal resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAnimalItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Animal>;
-    public getAnimalItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Animal>>;
-    public getAnimalItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Animal>>;
+    public getAnimalItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<AnimalJsonld>;
+    public getAnimalItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<AnimalJsonld>>;
+    public getAnimalItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<AnimalJsonld>>;
     public getAnimalItem(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getAnimalItem.');
@@ -257,7 +261,7 @@ export class AnimalService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Animal>(`${this.configuration.basePath}/api/animals/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<AnimalJsonld>(`${this.configuration.basePath}/api/animals/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -270,14 +274,18 @@ export class AnimalService {
 
     /**
      * Creates a Animal resource.
-     * @param animal The new Animal resource
+     * Creates a Animal resource.
+     * @param animalJsonld The new Animal resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public postAnimalCollection(animal?: Animal, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Animal>;
-    public postAnimalCollection(animal?: Animal, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Animal>>;
-    public postAnimalCollection(animal?: Animal, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Animal>>;
-    public postAnimalCollection(animal?: Animal, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public postAnimalCollection(animalJsonld: AnimalJsonld, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<AnimalJsonld>;
+    public postAnimalCollection(animalJsonld: AnimalJsonld, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<AnimalJsonld>>;
+    public postAnimalCollection(animalJsonld: AnimalJsonld, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<AnimalJsonld>>;
+    public postAnimalCollection(animalJsonld: AnimalJsonld, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+        if (animalJsonld === null || animalJsonld === undefined) {
+            throw new Error('Required parameter animalJsonld was null or undefined when calling postAnimalCollection.');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -320,8 +328,8 @@ export class AnimalService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.post<Animal>(`${this.configuration.basePath}/api/animals`,
-            animal,
+        return this.httpClient.post<AnimalJsonld>(`${this.configuration.basePath}/api/animals`,
+            animalJsonld,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
@@ -334,17 +342,21 @@ export class AnimalService {
 
     /**
      * Replaces the Animal resource.
-     * @param id 
-     * @param animal The updated Animal resource
+     * Replaces the Animal resource.
+     * @param id Resource identifier
+     * @param animalJsonld The updated Animal resource
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public putAnimalItem(id: string, animal?: Animal, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Animal>;
-    public putAnimalItem(id: string, animal?: Animal, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Animal>>;
-    public putAnimalItem(id: string, animal?: Animal, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Animal>>;
-    public putAnimalItem(id: string, animal?: Animal, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public putAnimalItem(id: string, animalJsonld: AnimalJsonld, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<AnimalJsonld>;
+    public putAnimalItem(id: string, animalJsonld: AnimalJsonld, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<AnimalJsonld>>;
+    public putAnimalItem(id: string, animalJsonld: AnimalJsonld, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<AnimalJsonld>>;
+    public putAnimalItem(id: string, animalJsonld: AnimalJsonld, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling putAnimalItem.');
+        }
+        if (animalJsonld === null || animalJsonld === undefined) {
+            throw new Error('Required parameter animalJsonld was null or undefined when calling putAnimalItem.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -388,8 +400,8 @@ export class AnimalService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.put<Animal>(`${this.configuration.basePath}/api/animals/${encodeURIComponent(String(id))}`,
-            animal,
+        return this.httpClient.put<AnimalJsonld>(`${this.configuration.basePath}/api/animals/${encodeURIComponent(String(id))}`,
+            animalJsonld,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

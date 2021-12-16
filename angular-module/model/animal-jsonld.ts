@@ -9,13 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AnimalBreedJsonld } from './animal-breed-jsonld';
 
 
-export interface OwnerFullOwner { 
+export interface AnimalJsonld { 
+    readonly '@context?': string | any | null;
+    readonly '@id'?: string;
+    readonly '@type'?: string;
     readonly id?: number;
-    firstName: string;
-    lastName: string;
-    birthAt?: string | null;
-    animals?: Array<string>;
+    name: string;
+    owner?: string | null;
+    gender?: string | null;
+    breeds?: Array<AnimalBreedJsonld>;
 }
 

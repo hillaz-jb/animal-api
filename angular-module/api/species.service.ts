@@ -18,8 +18,9 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
-import { Breed } from '../model/models';
-import { Species } from '../model/models';
+import { InlineResponse2001 } from '../model/models';
+import { InlineResponse2003 } from '../model/models';
+import { SpeciesJsonld } from '../model/models';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -87,18 +88,19 @@ export class SpeciesService {
     }
 
     /**
-     * Retrieves the collection of Breed resources.
-     * @param id 
+     * Retrieves a Species resource.
+     * Retrieves a Species resource.
+     * @param id Species identifier
      * @param toto The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Array<Breed>>;
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Array<Breed>>>;
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Array<Breed>>>;
-    public apiSpeciesBreedsGetSubresource(id: string, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<InlineResponse2001>;
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<InlineResponse2001>>;
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<InlineResponse2001>>;
+    public apiSpeciesBreedsGetSubresourceSpeciesSubresource(id: string, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling apiSpeciesBreedsGetSubresource.');
+            throw new Error('Required parameter id was null or undefined when calling apiSpeciesBreedsGetSubresourceSpeciesSubresource.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -137,7 +139,7 @@ export class SpeciesService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<Breed>>(`${this.configuration.basePath}/api/species/${encodeURIComponent(String(id))}/breeds`,
+        return this.httpClient.get<InlineResponse2001>(`${this.configuration.basePath}/api/species/${encodeURIComponent(String(id))}/breeds`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
@@ -151,6 +153,8 @@ export class SpeciesService {
 
     /**
      * Retrieves the collection of Species resources.
+     * Retrieves the collection of Species resources.
+     * @param toto The collection page number
      * @param name 
      * @param orderName 
      * @param orderId 
@@ -158,16 +162,19 @@ export class SpeciesService {
      * @param discoveredSinceStrictlyBefore 
      * @param discoveredSinceAfter 
      * @param discoveredSinceStrictlyAfter 
-     * @param toto The collection page number
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSpeciesCollection(name?: string, orderName?: string, orderId?: string, discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, toto?: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Array<Species>>;
-    public getSpeciesCollection(name?: string, orderName?: string, orderId?: string, discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, toto?: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Array<Species>>>;
-    public getSpeciesCollection(name?: string, orderName?: string, orderId?: string, discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, toto?: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Array<Species>>>;
-    public getSpeciesCollection(name?: string, orderName?: string, orderId?: string, discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, toto?: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
+    public getSpeciesCollection(toto?: number, name?: string, orderName?: 'asc' | 'desc', orderId?: 'asc' | 'desc', discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<InlineResponse2003>;
+    public getSpeciesCollection(toto?: number, name?: string, orderName?: 'asc' | 'desc', orderId?: 'asc' | 'desc', discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<InlineResponse2003>>;
+    public getSpeciesCollection(toto?: number, name?: string, orderName?: 'asc' | 'desc', orderId?: 'asc' | 'desc', discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<InlineResponse2003>>;
+    public getSpeciesCollection(toto?: number, name?: string, orderName?: 'asc' | 'desc', orderId?: 'asc' | 'desc', discoveredSinceBefore?: string, discoveredSinceStrictlyBefore?: string, discoveredSinceAfter?: string, discoveredSinceStrictlyAfter?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (toto !== undefined && toto !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>toto, 'toto');
+        }
         if (name !== undefined && name !== null) {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>name, 'name');
@@ -196,10 +203,6 @@ export class SpeciesService {
           localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
             <any>discoveredSinceStrictlyAfter, 'discoveredSince[strictly_after]');
         }
-        if (toto !== undefined && toto !== null) {
-          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
-            <any>toto, 'toto');
-        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -231,7 +234,7 @@ export class SpeciesService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Array<Species>>(`${this.configuration.basePath}/api/species`,
+        return this.httpClient.get<InlineResponse2003>(`${this.configuration.basePath}/api/species`,
             {
                 params: localVarQueryParameters,
                 responseType: <any>responseType_,
@@ -245,13 +248,14 @@ export class SpeciesService {
 
     /**
      * Retrieves a Species resource.
-     * @param id 
+     * Retrieves a Species resource.
+     * @param id Resource identifier
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getSpeciesItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<Species>;
-    public getSpeciesItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<Species>>;
-    public getSpeciesItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<Species>>;
+    public getSpeciesItem(id: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<SpeciesJsonld>;
+    public getSpeciesItem(id: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpResponse<SpeciesJsonld>>;
+    public getSpeciesItem(id: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<HttpEvent<SpeciesJsonld>>;
     public getSpeciesItem(id: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/ld+json' | 'application/json' | 'text/html',}): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling getSpeciesItem.');
@@ -287,7 +291,7 @@ export class SpeciesService {
             responseType_ = 'text';
         }
 
-        return this.httpClient.get<Species>(`${this.configuration.basePath}/api/species/${encodeURIComponent(String(id))}`,
+        return this.httpClient.get<SpeciesJsonld>(`${this.configuration.basePath}/api/species/${encodeURIComponent(String(id))}`,
             {
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,

@@ -11,11 +11,13 @@
  */
 
 
-export interface OwnerFullOwner { 
+export interface SpeciesJsonld { 
+    readonly '@id'?: string;
+    readonly '@type'?: string;
+    readonly '@context?': string | any | null;
     readonly id?: number;
-    firstName: string;
-    lastName: string;
-    birthAt?: string | null;
-    animals?: Array<string>;
+    name: string;
+    discoveredSince?: string | null;
+    breeds?: Array<string>;
 }
 

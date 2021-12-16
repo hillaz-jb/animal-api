@@ -6,6 +6,7 @@ import { AnimalService } from './api/animal.service';
 import { BreedService } from './api/breed.service';
 import { OwnerService } from './api/owner.service';
 import { SpeciesService } from './api/species.service';
+import { TokenService } from './api/token.service';
 
 @NgModule({
   imports:      [],

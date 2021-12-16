@@ -9,13 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { AnimalBreed } from './animal-breed';
 
 
 export interface Animal { 
     readonly id?: number;
     name: string;
-    owner?: string;
-    gender?: string;
-    breeds?: Array<string>;
+    owner?: string | null;
+    gender?: string | null;
+    breeds?: Array<AnimalBreed>;
 }
 

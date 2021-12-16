@@ -11,11 +11,10 @@
  */
 
 
-export interface OwnerFullOwner { 
-    readonly id?: number;
-    firstName: string;
-    lastName: string;
-    birthAt?: string | null;
-    animals?: Array<string>;
+export interface AnimalBreed { 
+    animal?: string;
+    breed?: string;
+    createdAt?: string | null;
+    readonly id?: number | null;
 }
 

@@ -11,11 +11,12 @@
  */
 
 
-export interface OwnerFullOwner { 
-    readonly id?: number;
-    firstName: string;
-    lastName: string;
-    birthAt?: string | null;
-    animals?: Array<string>;
+export interface InlineResponse200HydraView { 
+    id?: string;
+    type?: string;
+    'hydra:first'?: string;
+    'hydra:last'?: string;
+    'hydra:previous'?: string;
+    'hydra:next'?: string;
 }
 

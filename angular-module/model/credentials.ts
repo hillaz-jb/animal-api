@@ -11,11 +11,8 @@
  */
 
 
-export interface OwnerFullOwner { 
-    readonly id?: number;
-    firstName: string;
-    lastName: string;
-    birthAt?: string | null;
-    animals?: Array<string>;
+export interface Credentials { 
+    email?: string;
+    password?: string;
 }
 

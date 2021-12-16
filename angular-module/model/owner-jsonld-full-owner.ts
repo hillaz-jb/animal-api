@@ -11,7 +11,10 @@
  */
 
 
-export interface OwnerFullOwner { 
+export interface OwnerJsonldFullOwner { 
+    readonly '@context?': string | any | null;
+    readonly '@id'?: string;
+    readonly '@type'?: string;
     readonly id?: number;
     firstName: string;
     lastName: string;
