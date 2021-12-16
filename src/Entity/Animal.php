@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\ExistsFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\AnimalRepository;
 use App\Repository\OwnerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,10 +15,12 @@ use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-#[ORM\Entity(repositoryClass: OwnerRepository::class)]
+#[ORM\Entity(repositoryClass: AnimalRepository::class)]
 #[ApiResource(
     itemOperations: ['get', 'put', 'delete']
 )]
+#[ApiFilter(SearchFilter::class, properties: ['id'])]
+#[ApiFilter(ExistsFilter::class, properties: ['owner'])]
 class Animal
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
@@ -32,7 +37,7 @@ class Animal
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $gender;
 
-    #[ORM\ManyToMany(targetEntity: Breed::class)]
+    #[ORM\OneToMany(mappedBy: 'animal', targetEntity: AnimalBreed::class)]
     private $breeds;
 
     public function __construct()

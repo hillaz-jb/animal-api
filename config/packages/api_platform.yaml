@@ -6,7 +6,11 @@ api_platform:
     patch_formats:
         json: ['application/merge-patch+json']
     swagger:
-        versions: [3]
+        #versions: [3]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
     collection:
         pagination:
             # The default name of the parameter handling the page number.

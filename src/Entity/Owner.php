@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\OwnerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -37,6 +39,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         'groups' => ['lite_owner'],
     ]
 )]
+#[ApiFilter(SearchFilter::class, properties: ['lastName' => 'partial'])]
 class Owner
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]

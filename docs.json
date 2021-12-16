@@ -1,0 +1,991 @@
+{
+  "swagger": "2.0",
+  "basePath": "",
+  "info": {
+    "title": "",
+    "version": "0.0.0"
+  },
+  "paths": {
+    "\/api\/animals": {
+      "get": {
+        "tags": [
+          "Animal"
+        ],
+        "operationId": "getAnimalCollection",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves the collection of Animal resources.",
+        "responses": {
+          "200": {
+            "description": "Animal collection response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#\/definitions\/Animal"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "id[]",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "exists[owner]",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "toto",
+            "in": "query",
+            "required": false,
+            "description": "The collection page number",
+            "type": "integer"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Animal"
+        ],
+        "operationId": "postAnimalCollection",
+        "consumes": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Creates a Animal resource.",
+        "responses": {
+          "201": {
+            "description": "Animal resource created",
+            "schema": {
+              "$ref": "#\/definitions\/Animal"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "parameters": [
+          {
+            "name": "animal",
+            "in": "body",
+            "description": "The new Animal resource",
+            "schema": {
+              "$ref": "#\/definitions\/Animal"
+            }
+          }
+        ]
+      }
+    },
+    "\/api\/animals\/{id}": {
+      "get": {
+        "tags": [
+          "Animal"
+        ],
+        "operationId": "getAnimalItem",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves a Animal resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal resource response",
+            "schema": {
+              "$ref": "#\/definitions\/Animal"
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Animal"
+        ],
+        "operationId": "putAnimalItem",
+        "consumes": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Replaces the Animal resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "animal",
+            "in": "body",
+            "description": "The updated Animal resource",
+            "schema": {
+              "$ref": "#\/definitions\/Animal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal resource updated",
+            "schema": {
+              "$ref": "#\/definitions\/Animal"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Animal"
+        ],
+        "operationId": "deleteAnimalItem",
+        "summary": "Removes the Animal resource.",
+        "responses": {
+          "204": {
+            "description": "Animal resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "\/api\/breeds": {
+      "get": {
+        "tags": [
+          "Breed"
+        ],
+        "operationId": "getBreedCollection",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves the collection of Breed resources.",
+        "responses": {
+          "200": {
+            "description": "Breed collection response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#\/definitions\/Breed"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "toto",
+            "in": "query",
+            "required": false,
+            "description": "The collection page number",
+            "type": "integer"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Breed"
+        ],
+        "operationId": "postBreedCollection",
+        "consumes": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Creates a Breed resource.",
+        "responses": {
+          "201": {
+            "description": "Breed resource created",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "parameters": [
+          {
+            "name": "breed",
+            "in": "body",
+            "description": "The new Breed resource",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          }
+        ]
+      }
+    },
+    "\/api\/breeds\/{id}": {
+      "get": {
+        "tags": [
+          "Breed"
+        ],
+        "operationId": "getBreedItem",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves a Breed resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed resource response",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Breed"
+        ],
+        "operationId": "deleteBreedItem",
+        "summary": "Removes the Breed resource.",
+        "responses": {
+          "204": {
+            "description": "Breed resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Breed"
+        ],
+        "operationId": "putBreedItem",
+        "consumes": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Replaces the Breed resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "breed",
+            "in": "body",
+            "description": "The updated Breed resource",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed resource updated",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Breed"
+        ],
+        "operationId": "patchBreedItem",
+        "summary": "Updates the Breed resource.",
+        "consumes": [
+          "application\/merge-patch+json"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "breed",
+            "in": "body",
+            "description": "The updated Breed resource",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed resource updated",
+            "schema": {
+              "$ref": "#\/definitions\/Breed"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        }
+      }
+    },
+    "\/api\/owners": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "operationId": "getOwnerCollection",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves the collection of Owner resources.",
+        "responses": {
+          "200": {
+            "description": "Owner collection response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#\/definitions\/Owner-lite_owner"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "lastName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toto",
+            "in": "query",
+            "required": false,
+            "description": "The collection page number",
+            "type": "integer"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Owner"
+        ],
+        "operationId": "postOwnerCollection",
+        "consumes": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Creates a Owner resource.",
+        "responses": {
+          "201": {
+            "description": "Owner resource created",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-lite_owner"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        },
+        "parameters": [
+          {
+            "name": "owner",
+            "in": "body",
+            "description": "The new Owner resource",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-lite_owner"
+            }
+          }
+        ]
+      }
+    },
+    "\/api\/owners\/{id}": {
+      "get": {
+        "tags": [
+          "Owner"
+        ],
+        "operationId": "getOwnerItem",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves a Owner resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner resource response",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-full_owner"
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Owner"
+        ],
+        "operationId": "putOwnerItem",
+        "consumes": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Replaces the Owner resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "body",
+            "description": "The updated Owner resource",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-lite_owner"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner resource updated",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-lite_owner"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Owner"
+        ],
+        "operationId": "deleteOwnerItem",
+        "summary": "Removes the Owner resource.",
+        "responses": {
+          "204": {
+            "description": "Owner resource deleted"
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Owner"
+        ],
+        "operationId": "patchOwnerItem",
+        "summary": "Updates the Owner resource.",
+        "consumes": [
+          "application\/merge-patch+json"
+        ],
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "in": "body",
+            "description": "The updated Owner resource",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-lite_owner"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Owner resource updated",
+            "schema": {
+              "$ref": "#\/definitions\/Owner-lite_owner"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "422": {
+            "description": "Unprocessable entity"
+          }
+        }
+      }
+    },
+    "\/api\/species": {
+      "get": {
+        "tags": [
+          "Species"
+        ],
+        "operationId": "getSpeciesCollection",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves the collection of Species resources.",
+        "responses": {
+          "200": {
+            "description": "Species collection response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#\/definitions\/Species"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order[name]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order[id]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "discoveredSince[before]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "discoveredSince[strictly_before]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "discoveredSince[after]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "discoveredSince[strictly_after]",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toto",
+            "in": "query",
+            "required": false,
+            "description": "The collection page number",
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    "\/api\/species\/{id}": {
+      "get": {
+        "tags": [
+          "Species"
+        ],
+        "operationId": "getSpeciesItem",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "summary": "Retrieves a Species resource.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Species resource response",
+            "schema": {
+              "$ref": "#\/definitions\/Species"
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        }
+      }
+    },
+    "\/api\/species\/{id}\/breeds": {
+      "get": {
+        "tags": [
+          "Breed",
+          "Species"
+        ],
+        "operationId": "api_species_breeds_get_subresource",
+        "summary": "Retrieves the collection of Breed resources.",
+        "produces": [
+          "application\/ld+json",
+          "application\/json",
+          "text\/html"
+        ],
+        "responses": {
+          "200": {
+            "description": "Breed collection response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#\/definitions\/Breed"
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "toto",
+            "in": "query",
+            "required": false,
+            "description": "The collection page number",
+            "type": "integer"
+          }
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "description": "Value for the Authorization header",
+      "name": "Authorization"
+    }
+  },
+  "definitions": {
+    "Animal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "minLength": 2,
+          "maxLength": 255,
+          "type": "string"
+        },
+        "owner": {
+          "type": "string",
+          "format": "iri-reference"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "breeds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "iri-reference"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Breed": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "species": {
+          "type": "string",
+          "format": "iri-reference"
+        }
+      }
+    },
+    "Owner-full_owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "firstName": {
+          "minLength": 2,
+          "maxLength": 255,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "birthAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "animals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "iri-reference"
+          }
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ]
+    },
+    "Owner-lite_owner": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "firstName": {
+          "minLength": 2,
+          "maxLength": 255,
+          "type": "string"
+        },
+        "lastName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "animals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "iri-reference"
+          }
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ]
+    },
+    "Species": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "minLength": 2,
+          "maxLength": 255,
+          "type": "string"
+        },
+        "discoveredSince": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "breeds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "iri-reference"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  }
+}
